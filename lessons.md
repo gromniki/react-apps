@@ -116,4 +116,22 @@ const shallowCopy = [...array1, ...array2, 42];
 
 console.log(shallowCopy);
 
-//
+// Destructuring - Деструктуризация
+// ----------
+• 
+
+const person = {
+  firstName: 'Roman',
+  lastName: 'Golubev',
+  age: 27
+};
+
+// раньше делали так
+const firstName = person.firstName;
+const lastName = person.lastName;
+
+// с методом деструктуризации делают так
+const { firstName, lastName } = person;
+
+console.log(firstName, lastName);
+
