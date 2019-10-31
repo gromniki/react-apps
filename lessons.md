@@ -17,7 +17,9 @@ function square(x) {
   return x * x;
 }
 
-const sq0 = (x) => x * x; // преобразовали в стрелочную функцию. Если аргумент один, то скобки можно опустить
+const sq0 = (x) => x * x; // преобразовали в стрелочную функцию.
+// Если аргумент один, то скобки можно опустить
+
 const sq1 = (x) => {
   return x * x
 }; // если нужно написать кода много, то нужно обязательно поставить фигурные скобки и return
@@ -53,13 +55,13 @@ greeter.greetAll(['Bob', 'Mark', 'Pete']);
 // Особенность функции стрелки: Если нужно создавать экземпляр класса, то функция-стрелки
 // вызовет ошибку. То есть нет свойства .prototype, поэтому не могут вызываться с new
 
-// Параметры по-умолчанию (Default Parameters)
+// Параметры по умолчанию (Default Parameters)
 // ----------
 • Устанавливаются, если не передать значение (или передать undefined)
 • Чаще всего идут последними в списке
 • Могут иметь любой тип
 
-function fetchOrders (count = 10, start = 3) { // значения по-умолчанию
+function fetchOrders (count = 10, start = 3) { // значения по умолчанию
   console.log('Getting', count, 'orders starting from', start);
 }
 
@@ -116,9 +118,13 @@ const shallowCopy = [...array1, ...array2, 42];
 
 console.log(shallowCopy);
 
-// Destructuring - Деструктуризация
+// Destructuring - Деструктуризация объектов
 // ----------
-• 
+• const { name, age } = person;
+• упрощает получение свойств из объектов
+• поддерживается вложенность и значения по умолчанию
+• работает с параметрами функций
+• поддерживает rest element
 
 const person = {
   firstName: 'Roman',
@@ -134,4 +140,341 @@ const lastName = person.lastName;
 const { firstName, lastName } = person;
 
 console.log(firstName, lastName);
+
+
+// если сложнее, то
+const person = {
+  name: {
+    first: 'Roman',
+    last: 'Golubev'
+  },
+  age: 27,
+  role: admin
+};
+
+const { name: { first, last} } = person;
+console.log(first, last);
+
+// а с неймингом лучше так делать
+const { name: { first: firstName, last: lastName} } = person;
+console.log(firstName, lastName);
+
+// значение по умолчанию
+// если не присвоено никакое значение, то выведется user
+const { role = 'user ' } = person;
+console.log(role);
+
+// если свойство по умолчанию вложенное, то такая техника не работает
+const { permissions: {role = 'user ' } } = person;
+
+// нужно немного по-другому
+const { permissions: {role = 'user'} = {} } = person;
+
+// самое полезное в деструктуризации
+function connect({
+  host = 'localhost',
+  port = 12345,
+  user = 'guest' } = {}) {
+  console.log('user:', user, 'port:', port, 'host:', host);
+}
+
+connect();
+
+// rest element
+const dict = {
+  duck: 'quack',
+  dog: 'wuff',
+  mouse: 'squeak'
+};
+
+const { duck, ...otherAnimals } = dict;
+
+console.log(otherAnimals);
+
+
+// Array Destructuring - Деструктуризация массивов
+// ----------
+• const [a, ,b] = [1, 2, 3]
+• поддерживает всё те же возможности, что и объекты
+• можно пропускать значения
+• можно использовать синтаксис деструктуризации для массивов и объектов в одном выражении
+
+const fib = [1, 1, 2, 3, 5, 8, 13];
+
+const [, a, , b] = fib;
+
+console.log(a, b); // 1 3 (так как 1 и 3 пропустили)
+
+// в многомерном массиве
+const line = [[10, 17], [14, 7]];
+
+const [ [p1x, p1y], [p2x, p2y] ] = line;
+
+console.log(p1x, p1y, p2x, p2y);
+
+// с параметрами по умолчанию
+const people = ['Chris', 'Sandra'];
+
+const [a, b, c = 'guest'] = people;
+
+// с rest параметром
+const people = ['Chris', 'Sandra', 'Bob'];
+
+const [a, ...others] = people;
+console.log(others);
+
+---
+const dict = {
+  duck: 'quack',
+  dog: 'wuff',
+  mouse: 'squeak',
+  hamster: 'squeak'
+};
+
+// как разобрать эту структуру данных, чтобы найти все ключи, у которых одинаковое значение?
+
+const resDict = Object.entries(dict) // метод принимает массив и возвращает двухмерный массив
+  .filter((arr) => arr[1] === 'squeak'); // достаем все нужные элементы
+  
+// рефакторним
+const resDict = Object.entries(dict)
+  .filter(([, value]) => value === 'squeak')
+  .map(([key]) => key); // первый элемент запишем и вернём обратно
+
+console.log(resDict);
+
+// пример посложнее
+const shape = {
+  type: 'segment',
+  coordinates: {
+    start: [10, 17],
+    end: [14, 7]
+  }
+};
+
+const { coordinates: { start: [startX, startY], end: [endX, endY] }  } = shape;
+
+console.log(startX, startY, endX, endY);
+
+// Template Literals
+// ----------
+• const s = `My name is ${getName()}`;
+• поддерживают выражения, вызовы функций
+• поддреживают перенос строки
+• результат – обычная стока (не новый тип)
+
+const user = 'Bob';
+const num = 17;
+const txt = 'Hello, ' + user + ' you have ' + num + ' letters in your inbox';
+
+// но лучше использовать Template Literals с кавычками backticks
+const txt2 = `Hello, ${user} you have ${num} letters in your inbox`;
+
+console.log(txt);
+
+// можно даже выводить функции внутри фигурных скобок
+const dateNow = `Now is ${Date.now()}`;
+
+// многострочные
+const items = ['tea', 'coffee'];
+
+const templateHtml = `
+  <ul>
+    <li>${items[0]}</li>
+	<li>${items[1]}</li>
+  </ul>
+`;
+
+console.log(templateHtml);
+
+
+// Objects
+// ----------
+• const a = {x, y};
+• const a = {sayHi() { ... } };
+• const a = { [dynamicKey]: value};
+• const res = Object.assign(dest, src1, src2 ...);
+
+const x = 10;
+const y = 30;
+
+// по старинке
+const point = {
+  x: x,
+  y: y,
+  
+  draw: function(ctx) {
+    // ...
+  }
+};
+
+// новый синтаксис
+const p = {
+  x,
+  y,
+  draw(ctx) {
+    //
+  }
+};
+
+// создание ключей вычисляемых динамически - computed properties
+const prefix = '_blah_';
+
+const data = {
+  [prefix + 'name']: 'Bob',
+  [prefix + 'age']: 23
+};
+
+console.log(data);
+
+// копирование и соединение
+const defaults = {
+  host: 'localhost',
+  dbName: 'blog',
+  user: 'admin'  
+};
+
+const opts = {
+  user: 'John',
+  password: 'utopia'
+};
+
+Object.assign(defaults, opts);
+// соединяет и заменяет первый объект. Чтобы этого не было нужно
+// первым аргументом поставить пустой объект
+const resDef = Object.assign({}, defaults, opts);
+// Метод assign удобно использовать для поверхностных копий (shallowCopy)
+
+console.log(resDef);
+
+// 
+const person = {
+  name: 'Roma',
+  friends: ['Igor', 'Mira']
+};
+
+const shallowCopyPerson = Object.assign({}, person);
+
+console.log(shallowCopyPerson);
+
+
+// Spread operator fot Objects
+// ----------
+• const a = { ...defaults, ...opts};
+• разворачивает объект, превращая его в список свойств
+• можно комбинировать с любым другим синтаксисом создания объектов
+
+// Еще более круче
+const defaults = {
+  host: 'localhost',
+  dbName: 'blog',
+  user: 'admin'  
+};
+
+const opts = {
+  user: 'John',
+  password: 'utopia'
+};
+
+const res = { ...defaults, ...opts};
+
+// добавление новых свойств
+const defaults = {
+  host: 'localhost',
+  dbName: 'blog',
+  user: 'admin'  
+};
+
+const opts = {
+  user: 'John',
+  password: 'utopia'
+};
+
+const port = 8080;
+const res = {
+  ...defaults,
+  ...opts,
+  port,
+  connect() {
+  
+  }
+};
+
+
+// Prototypes
+// ----------
+
+
+const dog = {
+  name: 'dog',
+  voice: 'woof',
+  say: function() {
+    console.log(this.name, 'goes', this.voice);
+  }
+};
+
+const cat = {
+  name: 'cat',
+  voice: 'meow',
+  say: function() {
+    console.log(this.name, 'goes', this.voice);
+  }
+};
+
+dog.say();
+cat.say();
+
+// рефакторим
+const animal = {
+  say: function() {
+    console.log(this.name, 'goes', this.voice);
+  }
+};
+
+const dog = {
+  name: 'dog',
+  voice: 'woof',
+};
+
+const cat = {
+  name: 'cat',
+  voice: 'meow',
+};
+// при вызове сработает ошибка, так как ни один объект не знает про // метод say()
+
+// один из вариантов связи,
+// но этот метод плохо сказывается на производительности нашего
+// приложения. Поэтому его лучше не использовать вообще
+Object.setPrototypeOf(cat, animal);
+
+// Надо использовать Object.create()
+const dog = Object.create(animal); // создаём пустой объект с прототипом animal
+dog.name = 'dog';
+dog.voice = 'woof';
+
+dog.say();
+
+// А теперь рефакторним
+const createAnimal = function(name, voice) {
+  const result = Object.create(animal);
+  result.name = name;
+  result.voice = voice;
+  return result;
+}
+
+const dog = createAnimal('dog', 'woof');
+
+// И снова рефакторним и сделаем код лучше и чище
+const Animal = function(name, voice) {
+  // убрали метод создания пустого объекта, т.к. с ключевым словом new он не нужен
+  this.name = name; // вместо result используем this
+  this.voice = voice;
+  // return не нужен тоже
+}
+
+Animal.prototype.say = function() {
+  console.log(this.name, 'goes', this.voice);
+}; // убираем объект animal и приводим к такой конструкции
+
+const dog = new Animal('dog', 'woof');
 
