@@ -403,7 +403,13 @@ const res = {
 
 // Prototypes
 // ----------
+Хранят "общие" методы объектов.
+3 способа создать связь "объект-прототип"
 
+1. Object.setPrototypeOf(obj, proto);
+2. const obj = Object.create(proto);
+3. const obj = new Something();
+(объет Something.prototype станет прототипом obj)
 
 const dog = {
   name: 'dog',
@@ -442,11 +448,13 @@ const cat = {
 };
 // при вызове сработает ошибка, так как ни один объект не знает про // метод say()
 
+1. 
 // один из вариантов связи,
 // но этот метод плохо сказывается на производительности нашего
 // приложения. Поэтому его лучше не использовать вообще
-Object.setPrototypeOf(cat, animal);
+Object.setPrototypeOf(cat, animal); // ES6
 
+2.
 // Надо использовать Object.create()
 const dog = Object.create(animal); // создаём пустой объект с прототипом animal
 dog.name = 'dog';
@@ -464,6 +472,7 @@ const createAnimal = function(name, voice) {
 
 const dog = createAnimal('dog', 'woof');
 
+3.
 // И снова рефакторним и сделаем код лучше и чище
 const Animal = function(name, voice) {
   // убрали метод создания пустого объекта, т.к. с ключевым словом new он не нужен
@@ -477,4 +486,7 @@ Animal.prototype.say = function() {
 }; // убираем объект animal и приводим к такой конструкции
 
 const dog = new Animal('dog', 'woof');
+
+// создание объекта без прототипа
+const obj = Object.create(null);
 
