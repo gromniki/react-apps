@@ -74,6 +74,7 @@ function findProducts (opts = { minPrice: 10, maxPrice: 20 }) {
 
 findProducts();
 
+
 // Rest parameter (из чисел в массив)
 // ----------
 • всегда массив (может быть пустым)
@@ -489,4 +490,40 @@ const dog = new Animal('dog', 'woof');
 
 // создание объекта без прототипа
 const obj = Object.create(null);
+
+
+// Classes
+// ----------
+
+
+class Animal {
+  constructor(name, voice) {
+    this.name = name;
+    this.voice = voice;
+  }
+  
+  say() {
+    console.log(this.name, 'goes', this.voice);
+  }
+};
+
+// duck -> Bird.prototype -> Animal.prototype -> Object.prototype -> null
+class Bird extends Animal {
+  constructor(name, voice, canFly) {
+    super(name, voice); // передадим явно значения 
+	this.canFly = canFly;
+  }
+  
+  say() {
+    console.log('Birds don\'t like to talk'); // переопределяем метод say у Animal
+  }
+}
+// Если мы наследуем класс, то нам обязательно нужно вызвать super конструктор до того, как мы в первый раз используем this
+
+const duck = new Bird('Duck', 'quack', true);
+duck.say();
+
+
+
+
 
