@@ -492,8 +492,13 @@ const dog = new Animal('dog', 'woof');
 const obj = Object.create(null);
 
 
-// Classes
+// Classes (классы)
 // ----------
+• являются "синтаксическим сахаром"
+• методы добавляются в прототип
+constructor() - функция-конструктор
+super() - вызов супер-конструктора
+super.foo() - вызов метода супер-класса
 
 
 class Animal {
@@ -524,6 +529,19 @@ const duck = new Bird('Duck', 'quack', true);
 duck.say();
 
 
+// Class properties (свойства классов)
+// ----------
 
 
+class Counter {
+  count = 0;
+  
+  inc = () => {
+    this.count++;
+	console.log(this.count);
+  }
+};
+
+const cnt = new Counter();
+console.log();
 
