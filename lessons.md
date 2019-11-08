@@ -531,6 +531,10 @@ duck.say();
 
 // Class properties (свойства классов)
 // ----------
+• Инициализация полей в теле класса
+• Функции в теле класса - привязаны к объекту
+• Статические поля
+• Статические методы
 
 
 class Counter {
@@ -544,4 +548,42 @@ class Counter {
 
 const cnt = new Counter();
 console.log();
+cnt.inc();
+setTimeout(cnt.inc, 1000);
+
+// нововведения со словом static
+// статические свойства - это свойства, которые принадлежат классу, а не конкретным объектам. Обычно используются, чтобы логически формировать функции
+class Counter {
+  count = 0;
+  
+  inc = () => {
+    this.count += Counter.incStep;
+	console.log(this.count);
+  }
+  
+  static incStep = 2;
+  
+  static incrementAll = function(arr) {
+    arr.forEach((c) => c.inc());
+  };
+};
+
+Counter.incrementAll([]);
+
+// рефакторнем под ES6
+class Counter {
+  constructor() {
+    this.count = 0;
+	this.increment = () => {
+      this.count += Counter.incStep;	  
+    }
+  }
+};
+
+Counter.incStep = 2;
+Counter.incrementAll = function(arr) {
+  arr.forEach((c) => c.inc());
+};
+
+
 
