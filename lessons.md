@@ -586,4 +586,67 @@ Counter.incrementAll = function(arr) {
 };
 
 
+// Модули
+// ----------
+
+
+1 файл (mymath.js):
+const add = function (a, b) {
+  return a + b;
+};
+
+const substract = function (a, b) {
+  return a - b;
+};
+
+const multiply = function (a, b) {
+  return a * b;
+};
+
+const divide = function (a, b) {
+  return a / b;
+};
+
+class Graph {
+  addNode() {
+    console.log('node added');
+  }
+}
+
+// а можно сразу объявить по-дефолту
+export default class Graph {
+  addNode() {
+    console.log('node added');
+  }
+}
+
+const PI = 3.1415;
+
+export {
+  add, substract as sub, multiply, divide, PI
+};
+// здесь тоже можно переименовывать
+
+// можно назначать дефолтные
+// Кстати, нельзя поставить два значения дефолтных
+export default Graph
+
+
+2 файл (index.js):
+import { add as a, sub } from './mymath';
+// можно их сразу переименовывать с помощью as
+
+console.log(a(2, 2));
+
+// можно импортировать всё сразу с помощью:
+import * as calc from './mymath';
+// тем самым появиться объект calc
+
+console.log(calc.add(3, 2));
+
+// миксуем дефолтные и обычные
+import G1, {add, substract} from './mymath';
+
+
+
 
