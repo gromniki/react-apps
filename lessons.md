@@ -536,7 +536,7 @@ duck.say();
 • Статические поля
 • Статические методы
 
-
+---
 class Counter {
   count = 0;
   
@@ -588,8 +588,17 @@ Counter.incrementAll = function(arr) {
 
 // Модули
 // ----------
+import {a, b as c} from './file';
+import X from './file';
+import * as lib from './file';
 
+export {
+  a, b, c as d
+}
 
+export default Z;
+
+---
 1 файл (mymath.js):
 const add = function (a, b) {
   return a + b;
@@ -646,6 +655,12 @@ console.log(calc.add(3, 2));
 
 // миксуем дефолтные и обычные
 import G1, {add, substract} from './mymath';
+
+// для библиотеки, используемой как зависимость, можно писать
+// не путь к библиотеке, а её название
+import joker form 'one-liner-joke';
+
+
 
 
 
