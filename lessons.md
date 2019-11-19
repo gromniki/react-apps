@@ -10,8 +10,7 @@ for (var i = 0; i < 3; i++) {
 // через 100 мс, когда будет выводиться значение первый раз, значение i уже будет равно 3, потому что к тому
 // моменту цикл закончит свою работу. Через 200 мс функция запустит значение из того же места в памяти
 
-// Arrow-функции
-// ----------
+## Arrow-функции
 
 function square(x) {
   return x * x;
@@ -55,8 +54,8 @@ greeter.greetAll(['Bob', 'Mark', 'Pete']);
 // Особенность функции стрелки: Если нужно создавать экземпляр класса, то функция-стрелки
 // вызовет ошибку. То есть нет свойства .prototype, поэтому не могут вызываться с new
 
-// Параметры по умолчанию (Default Parameters)
-// ----------
+## Параметры по умолчанию (Default Parameters)
+
 • Устанавливаются, если не передать значение (или передать undefined)
 • Чаще всего идут последними в списке
 • Могут иметь любой тип
@@ -94,8 +93,8 @@ function max(a, b, ...numbers) {
 
 max(1, 3, 4, 7);
 
-// Spread operator (из массива в числа)
-// ----------
+## Spread operator (из массива в числа)
+
 • разворачивает массив, превращая его в список аргументов
 
 const arr = [1, 3, 4];
@@ -119,8 +118,7 @@ const shallowCopy = [...array1, ...array2, 42];
 
 console.log(shallowCopy);
 
-// Destructuring - Деструктуризация объектов
-// ----------
+## Destructuring - Деструктуризация объектов
 • const { name, age } = person;
 • упрощает получение свойств из объектов
 • поддерживается вложенность и значения по умолчанию
@@ -193,8 +191,7 @@ const { duck, ...otherAnimals } = dict;
 console.log(otherAnimals);
 
 
-// Array Destructuring - Деструктуризация массивов
-// ----------
+## Array Destructuring - Деструктуризация массивов
 • const [a, ,b] = [1, 2, 3]
 • поддерживает всё те же возможности, что и объекты
 • можно пропускать значения
@@ -257,8 +254,7 @@ const { coordinates: { start: [startX, startY], end: [endX, endY] }  } = shape;
 
 console.log(startX, startY, endX, endY);
 
-// Template Literals
-// ----------
+## Template Literals
 • const s = `My name is ${getName()}`;
 • поддерживают выражения, вызовы функций
 • поддреживают перенос строки
@@ -289,8 +285,7 @@ const templateHtml = `
 console.log(templateHtml);
 
 
-// Objects
-// ----------
+## Objects
 • const a = {x, y};
 • const a = {sayHi() { ... } };
 • const a = { [dynamicKey]: value};
@@ -359,8 +354,7 @@ const shallowCopyPerson = Object.assign({}, person);
 console.log(shallowCopyPerson);
 
 
-// Spread operator fot Objects
-// ----------
+## Spread operator fot Objects
 • const a = { ...defaults, ...opts};
 • разворачивает объект, превращая его в список свойств
 • можно комбинировать с любым другим синтаксисом создания объектов
@@ -402,8 +396,7 @@ const res = {
 };
 
 
-// Prototypes
-// ----------
+## Prototypes
 Хранят "общие" методы объектов.
 3 способа создать связь "объект-прототип"
 
@@ -492,8 +485,7 @@ const dog = new Animal('dog', 'woof');
 const obj = Object.create(null);
 
 
-// Classes (классы)
-// ----------
+## Classes (классы)
 • являются "синтаксическим сахаром"
 • методы добавляются в прототип
 constructor() - функция-конструктор
@@ -529,8 +521,7 @@ const duck = new Bird('Duck', 'quack', true);
 duck.say();
 
 
-// Class properties (свойства классов)
-// ----------
+## Class properties (свойства классов)
 • Инициализация полей в теле класса
 • Функции в теле класса - привязаны к объекту
 • Статические поля
@@ -586,8 +577,7 @@ Counter.incrementAll = function(arr) {
 };
 
 
-// Модули
-// ----------
+## Модули
 import {a, b as c} from './file';
 import X from './file';
 import * as lib from './file';
