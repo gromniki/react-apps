@@ -5,10 +5,13 @@ import ReactDOM from 'react-dom';
 // по требованию React называем с большой буквы,
 // чтобы при вызове интерпретировать как кастомные компоненты
 const TodoList = () => {
+  const items = ['Drink water', 'Learn React', 'Build Awesome App 2'];
+
   return (
     <ul>
-      <li>Learn React</li>
-      <li>Build Awesome App 2</li>
+      <li>{ items[0] }</li>
+      <li>{ items[1] }</li>
+      <li>{ items[2] }</li>
     </ul>
   );
 };
@@ -22,8 +25,12 @@ const SearchPanel = () => {
 };
 
 const App = () => {
+  const loginBox = <span>Log in please!</span>
+
   return (
     <div>
+      { loginBox } // т.о. можно вставлять только реакт-компоненты
+      <span>{ (new Date()).toString() }</span>
       <AppHeader />
       <SearchPanel />
       <TodoList />
