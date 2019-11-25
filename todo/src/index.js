@@ -25,11 +25,13 @@ const SearchPanel = () => {
 };
 
 const App = () => {
-  const loginBox = <span>Log in please!</span>
+  const isLoggedIn = true;
+  const loginBox = <span>Log in please! </span>;
+  const welcomeBox = <span>Welcome back, man</span>;
 
   return (
     <div>
-      { loginBox } // т.о. можно вставлять только реакт-компоненты
+      { isLoggedIn ? welcomeBox : loginBox }
       <span>{ (new Date()).toString() }</span>
       <AppHeader />
       <SearchPanel />
@@ -38,7 +40,7 @@ const App = () => {
   );
 };
 
-
+// { loginBox }  т.о. можно вставлять только реакт-компоненты
 // const el = <h1>Hello World</h1>;
 // если нужно больше строк, то обернуть в круглые скобки ()
 
