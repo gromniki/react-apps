@@ -22,4 +22,10 @@ const Header = () => {
 • Функции, которые возвращают React элемент должны начинаться с большой буквы
 • Имя затем можно использовать в JSX как будто это HTML tag
 
+### 4. JSX
+• Для HTML аттрибутов в JSX названия должны быть в формате camelCase, но не все.
+Пример:
+class -> className
+for -> htmlFor
+
 To learn React, check out the [React documentation](https://reactjs.org/).
