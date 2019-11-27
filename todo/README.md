@@ -23,9 +23,15 @@ const Header = () => {
 • Имя затем можно использовать в JSX как будто это HTML tag
 
 ### 4. JSX
+• Позволяет использовать выражения { foo.bar }
+• В свойства можно передавать любое значение
+• null, undefined, true, false в теле тегов игнорируются (не вызывая ошибок)
+
 • Для HTML аттрибутов в JSX названия должны быть в формате camelCase, но не все.
 Пример:
 class -> className
 for -> htmlFor
+
+disabled === disabled={true}
 
 To learn React, check out the [React documentation](https://reactjs.org/).
