@@ -1,36 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// создаём первый компонент
-// по требованию React называем с большой буквы,
-// чтобы при вызове интерпретировать как кастомные компоненты
-const TodoList = () => {
-  const items = ['Drink water', 'Learn React', 'Build Awesome App 2'];
-
-  return (
-    <ul>
-      <li>{ items[0] }</li>
-      <li>{ items[1] }</li>
-      <li>{ items[2] }</li>
-    </ul>
-  );
-};
-
-const AppHeader = () => {
-  return <h1>My Todo List</h1>;
-};
-
-const SearchPanel = () => {
-  const searchText = 'Type here to search';
-  const searchStyle = {
-    fontSize: '18px'
-  };
-  return <input
-    placeholder={searchText}
-    className="classForCss"
-    style={searchStyle}
-  />;
-};
+import AppHeader from './components/app-header';
+import SearchPanel from './components/search-panel';
+import TodoList from './components/todo-list';
 
 const App = () => {
   return (
