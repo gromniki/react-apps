@@ -34,4 +34,32 @@ for -> htmlFor
 
 disabled === disabled={true}
 
+### 5. Структура React проекта
+• Один компонент - один файл
+• Помещаем все компоненты в папку components
+• Хорошие компоненты – независимые компоненты
+
+
+
+---
+### Примеры
+• создаём первый компонент
+• по требованию React называем с большой буквы,
+• чтобы при вызове интерпретировать как кастомные компоненты
+
+const TodoList = () => {
+  const items = ['Drink water', 'Learn React', 'Build Awesome App 2'];
+
+  return (
+    <ul>
+      <li>{ items[0] }</li>
+      <li>{ items[1] }</li>
+      <li>{ items[2] }</li>
+    </ul>
+  );
+};
+
+export default TodoList;
+
+
 To learn React, check out the [React documentation](https://reactjs.org/).
