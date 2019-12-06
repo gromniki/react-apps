@@ -1,11 +1,11 @@
 import React from 'react';
 
-const TodoListItem = ( { label } ) => {
-  const liStyle = {
+const TodoListItem = ({label, important = false}) => {
+  const style = {
     color: important ? 'tomato' : 'black'
   };
 
-  return <span>{ label }</span>;
+  return <span style={style}>{label}</span>;
 };
 
 export default TodoListItem;
@@ -23,3 +23,4 @@ export default TodoListItem;
  * };
  *
  * */
+
