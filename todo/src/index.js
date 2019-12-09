@@ -6,12 +6,18 @@ import SearchPanel from './components/search-panel';
 import TodoList from './components/todo-list';
 
 const App = () => {
+  const todoData = [
+    {label: 'Drink water', important: false},
+    {label: 'Make Awesome App', important: true},
+    {label: 'Have a lunch', important: false}
+  ];
+
   return (
     <div>
-      <span>{ (new Date()).toString() }</span>
-      <AppHeader />
-      <SearchPanel />
-      <TodoList />
+      <span>{(new Date()).toString()}</span>
+      <AppHeader/>
+      <SearchPanel/>
+      <TodoList todos={todoData}/>
     </div>
   );
 };
@@ -45,6 +51,6 @@ const App = () => {
 * */
 
 
-ReactDOM.render(<App />, document.querySelector('#root'));
+ReactDOM.render(<App/>, document.querySelector('#root'));
 // render() превращает реакт элементы в html элементы на странице
 // Простым языком, рендерит в браузере

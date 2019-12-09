@@ -66,5 +66,25 @@ const TodoList = () => {
 
 export default TodoList;
 
+// переходный код
+Данные хранятся в index.js (то есть на самом верху), чтобы можно было их 
+потом поменять в одном месте
+const todoData = [
+  {label: 'Drink water', important: false},
+  {label: 'Make Awesome App', important: true},
+  {label: 'Have a lunch', important: false}
+];
+
+// todo-list.js
+const TodoList = ({todos}) => {
+  return (
+    <ul>
+      <li><TodoListItem label={todos[0].label} important={todos[0].important} /></li>
+      <li><TodoListItem label={todos[1].label} important={todos[1].important} /></li>
+      <li><TodoListItem label={todos[2].label} important={todos[2].important} /></li>
+    </ul>
+  );
+};
+
 
 To learn React, check out the [React documentation](https://reactjs.org/).
