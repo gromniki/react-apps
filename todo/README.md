@@ -86,5 +86,25 @@ const TodoList = ({todos}) => {
   );
 };
 
+// Рефакторим
+const elements = todos.map((item) => {
+  return (
+    <li>
+      <TodoListItem
+        label={item.label}
+        important={item.important} />
+    </li>
+  );
+});
+
+// превращается в
+const elements = todos.map((item) => {
+  return (
+    <li>
+      <TodoListItem {...item} />
+    </li>
+  );
+});
+
 
 To learn React, check out the [React documentation](https://reactjs.org/).
