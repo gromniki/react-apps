@@ -9,7 +9,7 @@ const TodoList = ({todos}) => {
   // const items = ['Drink water', 'Learn React', 'Build Awesome App 2'];
   const elements = todos.map((item) => {
     return (
-      <li id={item.id}>
+      <li key={item.id}>
         <TodoListItem {...item} />
       </li>
     );
